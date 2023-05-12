@@ -5,6 +5,7 @@ import Navbar from './components/Navbar.vue'
 import Canva from './components/Canva.vue'
 import Hero from './components/Hero.vue'
 import Footer from './components/Footer.vue'
+import Post from './components/Post.vue'
 </script>
 
 <template>
@@ -12,7 +13,6 @@ import Footer from './components/Footer.vue'
    <Navbar />
    <Hero />
    <Canva />
-
   <Footer />
   </header>
 
@@ -30,7 +30,8 @@ export default {
     Navbar,
     Canva,
     Hero,
-  Footer,
+    Footer,
+    Post,
   }
 }
 </script>

@@ -1,8 +1,14 @@
 <template>
-<!-- Create By Joker Banny -->
+
 <div class="min-h-screen flex justify-center items-center py-20">
   <div class="container mx-auto p-12 rounded-xl">
     <h1 class="text-4xl font-bold text-center mb-8">Latest Posts</h1>
+    <div class="sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+      <button class="gray-dark px-5 py-3 text-base mb-3 font-medium text-white transition duration-200 hover:bg-gray-600 active:bg-blue-700">Ukraine war</button>
+      <button class="gray-dark px-5 py-3 text-base mb-3 font-medium text-white transition duration-200 hover:bg-gray-600 active:bg-blue-700">Investigations</button>
+      <button class="gray-dark px-5 py-3 text-base mb-3 font-medium text-white transition duration-200 hover:bg-gray-600 active:bg-blue-700">Palestine</button>
+      <button class="gray-dark px-5 py-3 text-base mb-3 font-medium text-white transition duration-200 hover:bg-gray-600 active:bg-blue-700">Analysis</button>
+    </div>
     <!-- Box-1 -->
     <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
     <Single />
@@ -36,5 +42,5 @@ export default{
 }
 
 
-        Single</script>
+</script>
 

@@ -30,7 +30,7 @@
       <li>
         <a
           href="#"
-          class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500"
+          class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-[] focus:text-pink-500"
         >
           Contact Us
         </a>
@@ -39,7 +39,7 @@
   </div>
   <hr class="my-8 border-blue-gray-50" />
   <p class="block text-center font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
-    © 2023 Material Tailwind
+    © 2023 IMPERIUM
   </p>
 </footer>
 </template>
