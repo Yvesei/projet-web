@@ -16,7 +16,7 @@
  
             <div class="h-full w-60 mt-5 flex flex-col"> 
                 <button class="rounded-full bg-blue-500 px-5 py-3 text-base mb-3 font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700">
-                    Get Started
+                    <router-link to="/signup">Get Started</router-link>
                 </button> 
             </div>
             </div>

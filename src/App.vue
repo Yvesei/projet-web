@@ -10,10 +10,9 @@ import Post from './components/Post.vue'
 
 <template>
   <header>
-   <Navbar />
-   <Hero />
-   <Canva />
-  <Footer />
+    
+    <router-view></router-view>
+  
   </header>
 
   
