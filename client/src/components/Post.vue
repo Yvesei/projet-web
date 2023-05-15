@@ -31,14 +31,13 @@
 
         </div>
     </div>
-    <div class="flex justify-center items-center flex-col">
+    <div class="max-w-[45rem] m-auto flex justify-center items-center flex-col">
        <h2 class="text-2xl font-bold text-center mb-8">Related articles</h2>
-       <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
+       <div class=" sm:grid sm:grid-cols-2 lg:grid-cols-2 gap-4 space-y-4 sm:space-y-0">
         <Single />
         <!-- Box-2 -->
         <Single />
-        <!-- Box-3 -->
-        <Single />
+        
        </div>
     </div>
     <Comment />
