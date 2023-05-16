@@ -19,12 +19,12 @@ model Utilisateur {
 model Article {
   id            Int           @id @default(autoincrement())
   titre         String
-  contenu       String
+  contenu       String        @db.VarChar(9999)
   image         String
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   published     Boolean
-  User          Utilisateur?  @relation(fields: [utilisateurId], references: [id])
+  utilisateur   Utilisateur?  @relation(fields: [utilisateurId], references: [id])
   utilisateurId Int?
   categories    Categorie[]
   commentaire   Commentaire[]
