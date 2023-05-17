@@ -2,6 +2,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
+
+var app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -9,7 +15,7 @@ var articlesRouter = require('./routes/articles')
 var categoriesRouter = require('./routes/categories')
 var commentairesRouter = require('./routes/commentaires')
 
-var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
