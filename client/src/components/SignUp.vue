@@ -140,7 +140,7 @@ export default{
             role : 'AUTHOR'
           }
         );
-        console.log(response)
+        this.$router.push('/login');
       }
     }
 
