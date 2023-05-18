@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
+const jwt = require("jsonwebtoken");
 
 var app = express();
 
@@ -14,6 +15,7 @@ var usersRouter = require('./routes/users');
 var articlesRouter = require('./routes/articles')
 var categoriesRouter = require('./routes/categories')
 var commentairesRouter = require('./routes/commentaires')
+var loginRouter = require('./routes/login')
 
 
 
@@ -28,5 +30,6 @@ app.use('/users', usersRouter);
 app.use('/articles', articlesRouter);
 app.use('/categories', categoriesRouter);
 app.use('/commentaires', commentairesRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;
