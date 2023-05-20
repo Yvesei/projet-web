@@ -1,5 +1,9 @@
 GET http://localhost:3000/articles
 
+
+###
+GET http://localhost:3000/articles/latest
+
 ###
 GET  http://localhost:3000/articles/1
 
@@ -14,7 +18,8 @@ Content-Type: application/json
     "titre":"post3",
     "contenu" : "bla bla bla 3",
     "image" : "",
-    "published": true
+    "published": true,
+    "utilisateurId" : 12
 }
 
 ###
@@ -34,3 +39,4 @@ Content-Type: application/json
     "published": true
 
 }
+

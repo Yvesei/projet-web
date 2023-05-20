@@ -28,3 +28,8 @@ Content-Type: application/json
     "nom":"categorie 2 modifed"
 
 }
+
+
+
+###
+GET  http://localhost:3000/categories/count

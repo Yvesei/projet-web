@@ -12,6 +12,18 @@ router.get('/', function(req, res, next) {
   }).then(articles => res.send(articles))
 });
 
+router.get('/latest', function(req, res, next){
+  prisma.article.findMany({
+    skip: 0,
+    take: 9,
+    orderBy: {
+      createdAt: 'desc' ,
+    },
+    include: {
+      categories: true,
+    }
+  }).then(articles => res.send(articles))
+})
 // get a single articles 
 router.get('/:id', function(req, res, next) {
 
@@ -22,7 +34,9 @@ router.get('/:id', function(req, res, next) {
 //post a new articles
 
 router.post('/', function(req,res,next) {
-  prisma.article.create({data : req.body})
+  prisma.article.create({
+    data : req.body
+  })
   .then(article => res.send(article))
 
 })
@@ -43,4 +57,6 @@ router.patch('/', function(req,res,next) {
     data : req.body })
   .then(article => res.send(article))
 });
+
+
 module.exports = router;

@@ -6,12 +6,15 @@ import Hero from '../components/Hero.vue'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import Post from '../components/Post.vue'
+
 </script>
+
+
 
 <template>
   <header>
     <Navbar />
-    <Post />
+    <Post :articleId="articleId"/>
     <Footer />
   </header>
   
@@ -32,7 +35,14 @@ export default {
     Hero,
     Footer,
     Post,
-  }
+  },
+  props: {
+    articleId: {
+      type: Number,
+      required: true,
+    },
+  },
+
 }
 </script>
 

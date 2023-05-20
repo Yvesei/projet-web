@@ -125,6 +125,7 @@ export default{
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('email', response.data.user.email)
           localStorage.setItem('name', response.data.user.name)
+          localStorage.setItem('id', response.data.user.id)
           this.$router.push('/');
         } else {
           // Display an error message indicating invalid credentials

@@ -12,6 +12,23 @@ router.get('/', function(req, res, next) {
   }).then(categories => res.send(categories))
 });
 
+router.get('/count', function(req, res, next) {
+  prisma.categorie.findMany({
+    include: {
+      articles: true,
+    },
+  })
+    .then(categories => {
+      const result = categories.map(category => ({
+        category: category.nom,
+        articleCount: category.articles.length,
+      }));
+      res.send(result);
+    })
+    .catch(error => next(error));
+});
+
+
 // get a single categories 
 router.get('/:id', function(req, res, next) {
 
@@ -43,4 +60,8 @@ router.patch('/', function(req,res,next) {
     data : req.body })
   .then(categorie => res.send(categorie))
 });
+
+
+
+
 module.exports = router;

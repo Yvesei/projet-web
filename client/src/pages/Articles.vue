@@ -6,12 +6,13 @@ import Hero from '../components/Hero.vue'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import Post from '../components/Post.vue'
+import Articles from '../components/Articles.vue'
 </script>
 
 <template>
   <header>
    <Navbar />
-   <Canva />
+   <Articles />
    <Footer />
   </header>
   
@@ -32,6 +33,7 @@ export default {
     Hero,
     Footer,
     Post,
+    Articles
   }
 }
 </script>

@@ -36,11 +36,12 @@ router.delete('/:id', function(req,res,next) {
 
 //modify a user
 router.patch('/', function(req,res,next) {
+  const { id, ...userData } = req.body;
   prisma.utilisateur.update({
     where: { 
-      id : +req.body.id 
+      id : +id 
     },
-    data : req.body })
+    data : userData })
   .then(utilisateur => res.send(utilisateur))
 });
 module.exports = router;
