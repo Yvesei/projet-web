@@ -34,7 +34,28 @@
         
        </div>
     </div>
-    <Comment />
+        <section class="bg-white dark:bg-gray-900 py-8 lg:py-16">
+  <div class="max-w-2xl mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({{commentsNumber}})</h2>
+    </div>
+    <form class="mb-6">
+        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <textarea v-model="CommentContent" id="commentArea" rows="6"
+                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                placeholder="Write a comment..." required></textarea>
+        </div>
+        <button @click="SubmitComment()" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+            Post comment
+        </button>
+    </form>
+
+    <div v-for="comment in comments" v-bind:key="comment.id">
+        <CommentOne :comment=comment  />
+      </div>
+
+       </div>
+</section>   
   </div>
     
 </div>
@@ -42,31 +63,62 @@
     
 </template>
 <script>
-import Single from './single.vue'
-import Comment from './Comment.vue'
+
+import CommentOne from './CommentOne.vue'
 import axios from 'axios'
 export default {
     name:'Post',
-    components:{
-        Single,
-        Comment,
+    components:{  
+        CommentOne,
     },
     data() {
         return {
-            article : {}
+            article : {},
+            comments : [],
+            commentsNumber : '',
+            CommentContent : '',
+            email : ''
         }
     },
   mounted() {
     this.id = this.$route.params.id;
     this.getArticle();
+    this.getComments()
+
+     const storedEmail = localStorage.getItem('email')
+    this.email = storedEmail;
   },
   methods: {
       async getArticle(){
         const articleraw = await axios.get(`articles/${this.id}`
         );
         this.article = articleraw.data
+      },
+
+      
+      async getComments(){
+
+        const response = await axios.get(`commentaires/${this.id}`)
+        .then(response => {
+          this.comments = response.data; // Assign the fetched article data to the 'article' property
+            this.commentsNumber = this.comments.length
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      },
+
+      async SubmitComment(){
+        const response = await axios.post('commentaires/', 
+            {
+            contenu : this.CommentContent,
+            email : this.email,
+            articleId : this.article.id
+          }
+        );
       }
-    }
+    },
+  
 
 }
 </script>

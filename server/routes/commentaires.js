@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 // get a single commentaires 
 router.get('/:id', function(req, res, next) {
 
-  prisma.commentaire.findUnique({where: { id : +req.params.id },})
+  prisma.commentaire.findMany({where: { articleId : +req.params.id },})
   .then(commentaire => res.send(commentaire))
 });
 
