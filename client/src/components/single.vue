@@ -3,7 +3,7 @@
         <div>
           <div class=" transform transition duration-500 ">
             <div>
-              <img class="w-full" src="https://www.mintpressnews.com/wp-content/uploads/2023/05/Untitled-design2-1.png" />
+              <img class="w-full" :src="`${article.image}`" />
               <div class=" py-2">
                 <div class="yellow-flag mr-2" v-for="categorie in article.categories" v-bind:key="categorie.id">
 						      {{categorie.nom}}	

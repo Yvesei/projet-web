@@ -73,7 +73,10 @@ export default {
             password : this.password
           }
         );
-        this.$router.push('/');
+        localStorage.setItem('email', response.data.email)
+        localStorage.setItem('name', response.data.name)
+        localStorage.setItem('id', response.data.id)
+         this.$router.push('/');
       }
     }
 };

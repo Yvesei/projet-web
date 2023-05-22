@@ -19,7 +19,7 @@ Content-Type: application/json
     "contenu" : "bla bla bla 3",
     "image" : "",
     "published": true,
-    "utilisateurId" : 12
+    "utilisateurId" : 4
 }
 
 ###
@@ -37,6 +37,5 @@ Content-Type: application/json
     "contenu" : "bla bla bla 222",
     "image" : "",
     "published": true
-
 }
 

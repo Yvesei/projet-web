@@ -34,11 +34,19 @@ router.get('/:id', function(req, res, next) {
 //post a new articles
 
 router.post('/', function(req,res,next) {
+  const { titre, contenu, image, published } = req.body;
+  const utilisateurId = req.body.utilisateurId;
   prisma.article.create({
-    data : req.body
+    data: {
+      titre,
+      contenu,
+      image,
+      published,
+      utilisateurId: utilisateurId
+    }
   })
   .then(article => res.send(article))
-
+  .catch(err => res.send(err))
 })
 
 

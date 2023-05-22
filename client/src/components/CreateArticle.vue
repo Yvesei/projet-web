@@ -4,6 +4,7 @@
 
   <form class="mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input v-model="title" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text">
+    <input v-model="image" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="image" type="text">
     <textarea v-model="content" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea>
     <!-- icons -->
     <div class="icons flex text-gray-500 m-2">
@@ -28,18 +29,19 @@ export default {
       return {
         title : '',
         content : '',
-        id : localStorage.id
+        image : ''
       }
     },
     methods: {
       async handleSubmit(){
+        const utilisateurId = parseInt(localStorage.getItem('id'))
         const response = await axios.post('articles/', 
             {
-            titre : this.title,
-            contenu : this.content,
-            image : '',
-            published : true,
-            utilisateurId: this.id
+                titre:this.title,
+                contenu : this.content,
+                image : this.image,
+                published: true,
+                utilisateurId : utilisateurId
           }
         );
         this.$router.push('/');
