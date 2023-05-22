@@ -10,12 +10,8 @@ import Post from './components/Post.vue'
 
 <template>
   <header>
-    
     <router-view></router-view>
-  
   </header>
-
-  
 </template>
 
 <script>

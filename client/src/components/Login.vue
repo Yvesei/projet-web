@@ -28,7 +28,7 @@
                   border-gray-300 rounded-md"/>
             </div>
 
-            <a class="w-full text-sm font-medium leading-snug font-serif "><router-link to="/signup">You don't have an account ?</router-link></a>
+            <a class="w-full text-sm font-medium leading-snug font-serif "><router-link to="/signup">Create an account ?</router-link></a>
 
             <div class="relative">
               <a @click="handleSubmit()" class="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500
