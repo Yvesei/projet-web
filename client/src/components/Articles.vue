@@ -32,19 +32,18 @@ export default{
   },
   data() {
     return {
-      articles: [], // Empty object to hold the article data
+      articles: [], 
       categories : []
     };
   },
   methods: {
     fetchArticle() {
       var i =1;
-      // Make an API request to fetch the article data
-      // Replace the API_URL with your actual API endpoint
+      
       axios.get(`articles`)
         .then(response => {
           console.log(response)
-          this.articles = response.data; // Assign the fetched article data to the 'article' property
+          this.articles = response.data; 
         })
         .catch(error => {
           console.error(error);

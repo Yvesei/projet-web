@@ -5,6 +5,14 @@
   <form class="mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input v-model="title" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text">
     <input v-model="image" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="image" type="text">
+    
+    <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a category</label>
+    <select id="categories" v-model="selectedCategoryId" class=" mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <option selected>Choose a category</option>
+      <option v-for="categorie in categories" v-bind:key="categorie.id" :value="categorie.id">{{categorie.category}}</option>
+
+    </select>
+
     <textarea v-model="content" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea>
     <!-- icons -->
     <div class="icons flex text-gray-500 m-2">
@@ -29,8 +37,13 @@ export default {
       return {
         title : '',
         content : '',
-        image : ''
+        image : '',
+        selectedCategoryId : '',
+        categories : []
       }
+    },
+    mounted(){
+        this.fetchCategories();
     },
     methods: {
       async handleSubmit(){
@@ -41,11 +54,23 @@ export default {
                 contenu : this.content,
                 image : this.image,
                 published: true,
-                utilisateurId : utilisateurId
+                utilisateurId : utilisateurId,
+                categories: this.selectedCategoryId
           }
         );
-        this.$router.push('/');
-      }
+        this.$router.push('/') 
+      },
+      fetchCategories() {
+  
+      axios.get(`categories/count`)
+        .then(response => {
+          this.categories = response.data; 
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      
+    }
     }
 
 }

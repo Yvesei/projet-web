@@ -20,6 +20,7 @@ router.get('/count', function(req, res, next) {
   })
     .then(categories => {
       const result = categories.map(category => ({
+        id : category.id,
         category: category.nom,
         articleCount: category.articles.length,
       }));

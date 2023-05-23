@@ -26,6 +26,9 @@
         <router-link to="/CreateArticle" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New Article</router-link>
       </li>
       <li>
+        <router-link class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" to="/myarticles">My Articles</router-link>
+      </li>
+      <li>
         <router-link class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" to="/settings">Settings</router-link>
       </li>
       <li>

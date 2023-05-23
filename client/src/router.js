@@ -9,6 +9,7 @@ import About from "./pages/About.vue";
 import Contact from "./pages/Contact.vue";
 import Settings from "./pages/Settings.vue";
 import CreateArticle from "./pages/CreateArticle.vue";
+import Myarticles from "./pages/Myarticles.vue";
 
 
 
@@ -23,6 +24,7 @@ const routes = [
   { path: "/settings", component: Settings },
   { path: "/CreateArticle", component: CreateArticle},
   { path: "/post/:id", component: Post },
+  { path: "/myarticles", component: Myarticles }
 
   
 ];

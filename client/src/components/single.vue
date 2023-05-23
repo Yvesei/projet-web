@@ -9,6 +9,8 @@
 						      {{categorie.nom}}	
         				</div>
                 <h1 class="uppercase text-xl font-gray-700 font-bold">{{article.titre}}</h1>
+                <button v-if="isMyArticle" @click="deleteArticle(article.id)" class="bg-red-500 text-white px-4 py-2 mt-4">delete</button>
+
               </div>
             </div>
           </div>
@@ -26,8 +28,22 @@ export default {
       article: {
       type: Object, // Specify the type of the prop
       required: true // Set to true if the prop is required
-    }
+    },   
     },
+    methods: {
+    deleteArticle(articleId) {
+      axios
+        .delete(`articles/${articleId}`)
+        .then(() => {
+          // Emit the deleteArticle event to the parent component
+          this.$emit("deleteArticle");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
+  },
     
   
 }
