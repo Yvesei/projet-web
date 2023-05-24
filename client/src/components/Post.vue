@@ -12,7 +12,7 @@
         <div class="max-w-[45rem] flex flex-col justify-center m-auto">
             <h2 class="text-4xl font-bold  mt-8">{{article.titre}}</h2>
         <div class="flex items-center py-6">
-                <img class="rounded h-[2rem]" src="../assets/profile.avif" alt="">
+                <img class="rounded h-[2rem]" :src="getUserImageSrc()" alt="">
                 <h3 class="px-2">{{user.name}}</h3>
             <span>
                 <svg class="h-4 px-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
@@ -79,7 +79,8 @@ export default {
             CommentContent : '',
             email : '',
             Date : '',
-            user : ''
+            user : '',
+            authorid : ''
 
         }
     },
@@ -90,9 +91,12 @@ export default {
     this.getAuthor()
     const storedEmail = localStorage.getItem('email')
     this.email = storedEmail;
+    this.authorid = localStorage.getItem('authorid');
+
   },
 
   methods: {
+    
       async getArticle(){
         const articleraw = await axios.get(`articles/${this.id}`
         );
@@ -102,7 +106,11 @@ export default {
         localStorage.setItem('authorid', this.article.utilisateurId)
 
       },
-
+      getUserImageSrc() {
+      const number = this.authorid % 8 + 1; // Replace with the actual user ID
+      // Assuming your images are named from 1.jpg to 8.jpg in the "public" folder
+      return `../../public/${number}.png`;
+      },
       
       async getComments(){
 
@@ -136,6 +144,12 @@ export default {
         });
       }
     },
+    beforeRouteLeave(to, from, next) {
+    if (to.path !== '/post') {
+      localStorage.removeItem('authorid');
+    }
+    next();
+  },
   
 
 }

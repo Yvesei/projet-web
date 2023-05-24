@@ -106,12 +106,10 @@ export default {
       if (this.isSelected(categoryId)) {
         // If category is already selected, remove it from the selectedCategories array
         this.selectedCategories = this.selectedCategories.filter((id) => id !== categoryId);
-        console.log(this.selectedCategories)
 
       } else {
         // If category is not selected, add it to the selectedCategories array
         this.selectedCategories.push(categoryId);
-        console.log(this.selectedCategories)
       }
     },
     isSelected(categoryId) {

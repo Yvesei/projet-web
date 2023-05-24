@@ -24,7 +24,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req,res,next) {
   prisma.commentaire.create({data : req.body})
   .then(commentaire => res.send(commentaire))
-
+  
 })
 
 
@@ -32,6 +32,10 @@ router.post('/', function(req,res,next) {
 router.delete('/:id', function(req,res,next) {
   prisma.commentaire.delete({where: { id : +req.params.id },})
   .then(commentaire => res.send(commentaire))
+  .catch(error => {
+    // Handle error
+    console.error(error);
+  });
 });
 
 //modify a acticles

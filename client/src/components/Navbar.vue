@@ -11,7 +11,7 @@
 
 
        <button @click="toggleDropdown" v-if="name" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
-                <img class="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100" alt="">
+                <img class="object-cover w-8 h-8 rounded-full" :src="getUserImageSrc()" alt="">
             
                 <div class="text-left rtl:text-right">
                     <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">{{name}}</h1>
@@ -68,17 +68,24 @@ export default {
     data() {
     return {
       name: '', // Initialize the userName data property
+      id : '',
       showDropdown: false,
     };
   },
   mounted() {
     // Retrieve the user's name from localStorage
     const storedName = localStorage.getItem('name');
+    this.id = localStorage.getItem('id');
 
     // Update the userName data property with the retrieved value
     this.name = storedName;
   },
   methods: {
+    getUserImageSrc() {
+      const number = this.id % 8 + 1; // Replace with the actual user ID
+      // Assuming your images are named from 1.jpg to 8.jpg in the "public" folder
+      return `../../public/${number}.png`;
+    },
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
