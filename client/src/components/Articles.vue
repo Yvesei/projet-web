@@ -42,7 +42,6 @@ export default{
       
       axios.get(`articles`)
         .then(response => {
-          console.log(response)
           this.articles = response.data; 
         })
         .catch(error => {

@@ -2,31 +2,30 @@ const { faker } = require('@faker-js/faker');
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
- async function seed() {
+//  async function seed() {
 //    await prisma.utilisateur.deleteMany();
 //   await prisma._ArticleToCategorie.deleteMany()
 //     await prisma.article.deleteMany();
 //     await prisma.commentaire.deleteMany();
 //     await prisma.categorie.deleteMany();
-}
+//}
 //seed()
 
 
 // creating admin user
-// const AdminUsers = prisma.utilisateur.create({
-//     data: {
-//       name: faker.person.fullName(),
-//       email: faker.internet.email(),
-//       password: faker.internet.password(),
-//       role: "ADMIN",
-//     },
-//   })
-//   .catch((error)=>{
-//     console.error(error);
-//   });
+const AdminUsers = prisma.utilisateur.create({
+    data: {
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      role: "ADMIN",
+    },
+  })
+  .catch((error)=>{
+    console.error(error);
+  });
 
 // creating 10 authors
-/*
 function AuthorUser() {
     prisma.utilisateur.create({
     data: {
@@ -43,29 +42,29 @@ function AuthorUser() {
 for(let i=0;i<10;i++){
     AuthorUser()
   }
-*/
+
 
 
 // creating 10 categories
-// function Categorie(){ prisma.categorie.create({
-//     data: {
-//      nom:faker.name.jobArea()
-//     },
-//   })
-//   .catch((error)=>{
-//     console.error(error);
-//   });
-// }
+function Categorie(){ prisma.categorie.create({
+    data: {
+     nom:faker.name.jobArea()
+    },
+  })
+  .catch((error)=>{
+    console.error(error);
+  });
+}
 
-// for(let i=0;i<10;i++){
-//     Categorie()
-// }
+for(let i=0;i<10;i++){
+    Categorie()
+}
   
 
 
 
 // creating articles
-/*
+
 async function seedArticles() {
     
     await prisma.article.deleteMany();
@@ -103,9 +102,9 @@ async function seedArticles() {
 }
 
 seedArticles()
-*/
 
-/*
+
+
 
 async function addCommentsToArticles() {
     const articles = await prisma.article.findMany();
@@ -126,4 +125,4 @@ async function addCommentsToArticles() {
     }
   }
 addCommentsToArticles();  
-*/
+

@@ -9,6 +9,7 @@
     <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
       <div v-for="article in articles" v-bind:key="article.id">
         <Single :article=article />
+        <Deletebtn @click="deleteArticle(article.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"/>
       </div>
     </div>
     </div>
@@ -20,10 +21,12 @@
 import axios from "axios";
 
 import Single from './single.vue';
+import Deletebtn from './deletebtn.vue';
 export default{
     name:"Canva",
     components:{
         Single,
+        Deletebtn,
     },
 
     mounted() {
@@ -46,6 +49,18 @@ export default{
         });
         
     },
+    deleteArticle(articleId) {
+      axios
+        .delete(`articles/${articleId}`)
+        .then(() => {
+
+          this.articles = this.articles.filter((article) => article.id !== articleId);
+
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   
   }
 }

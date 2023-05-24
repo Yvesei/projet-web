@@ -94,7 +94,7 @@ router.post('/', function(req, res, next) {
         published,
         utilisateurId,
         categories: {
-          connect: { id: categories }
+          connect: categories.map(categoryId => ({ id: categoryId })),
         }
       },
       include: {
