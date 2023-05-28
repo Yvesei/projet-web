@@ -107,8 +107,7 @@ export default {
 
       },
       getUserImageSrc() {
-      const number = this.authorid % 8 + 1; // Replace with the actual user ID
-      // Assuming your images are named from 1.jpg to 8.jpg in the "public" folder
+      const number = this.authorid % 8 + 1; 
       return `../../public/${number}.png`;
       },
       
@@ -137,7 +136,7 @@ export default {
 
         const response = await axios.get(`users/${localStorage.authorid}`)
         .then(response => {
-          this.user = response.data; // Assign the fetched article data to the 'article' property
+          this.user = response.data; 
         })
         .catch(error => {
           console.error(error);

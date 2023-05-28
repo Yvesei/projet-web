@@ -41,10 +41,8 @@ export default {
         deleteComment() {
             axios.delete(`/commentaires/${this.comment.id}`)
                 .then(response => {
-                    // Handle successful deletion, e.g., show a success message or update the comment list
                 })
                 .catch(error => {
-                    // Handle error, e.g., show an error message
                 });
         }
     }
