@@ -36,12 +36,15 @@
       </li>
     </ul>
 </div>
-      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
+  <!-- Nav Dropwdown Menu -->
+
+  <button @click="toggleDropdownNav()" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
       </button>
+
+  <!-- end of drop down menu -->
   </div>
-  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+  <div v-if="showDropdownNav || responsive !== 'small' " class="md:block items-center justify-between  w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <li>
           <router-link class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" to="/">Home</router-link>
@@ -70,17 +73,48 @@ export default {
       name: '', // Initialize the userName data property
       id : '',
       showDropdown: false,
+      showDropdownNav: false ,
+      responsive : ''
     };
   },
   mounted() {
+    this.updateResponsive();
+    
     // Retrieve the user's name from localStorage
     const storedName = localStorage.getItem('name');
     this.id = localStorage.getItem('id');
 
     // Update the userName data property with the retrieved value
     this.name = storedName;
+    window.addEventListener('resize', this.updateResponsive);
   },
+  beforeUnmount() {
+    // Remove event listener before component is unmounted
+    window.removeEventListener('resize', this.updateResponsive);
+  },
+  
   methods: {
+    toggleDropdownNav() {
+  this.showDropdownNav = !this.showDropdownNav;
+},
+updateResponsive(){
+    // Get the current screen width
+    const screenWidth = window.innerWidth;
+
+    // Update the responsive property based on screen width
+    if (screenWidth < 768) {
+      this.responsive = 'small';
+    } else if (screenWidth >= 768 && screenWidth < 1024) {
+      this.responsive = 'medium';
+    } else {
+      this.responsive = 'large';
+    }
+
+    // Update the visibility of the dropdown menu on screen size change
+    if (this.responsive !== 'small') {
+        this.showDropdownNav = false;
+      }
+  },
     getUserImageSrc() {
       const number = this.id % 8 + 1; // Replace with the actual user ID
       // Assuming your images are named from 1.jpg to 8.jpg in the "public" folder
