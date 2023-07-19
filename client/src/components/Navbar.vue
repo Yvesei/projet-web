@@ -50,14 +50,12 @@ export default {
     return {
       name: '', // Initialize the userName data property
       id : '',
-      showDropdown: false,
       showDropdownNav: false ,
       responsive : ''
     };
   },
   mounted() {
     this.updateResponsive();
-    
     // Retrieve the user's name from localStorage
     const storedName = localStorage.getItem('name');
     this.id = localStorage.getItem('id');
@@ -93,14 +91,6 @@ updateResponsive(){
         this.showDropdownNav = false;
       }
   },
-    getUserImageSrc() {
-      const number = this.id % 8 + 1; // Replace with the actual user ID
-      // Assuming your images are named from 1.jpg to 8.jpg in the "public" folder
-      return `../../public/${number}.png`;
-    },
-    toggleDropdown() {
-      this.showDropdown = !this.showDropdown;
-    },
     signOut() {
       // Clear the token from localStorage or sessionStorage
       localStorage.clear();
