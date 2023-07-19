@@ -17,21 +17,57 @@ const routes = [
   { path: "/", component: Home },
   { path: "/about", component: About },
   { path: "/articles", component: Articles },
-  { path: "/login", component: Login },
-  { path: "/signup", component: SignUp },
+  { path: "/login", component: Login,
+  meta: { requiresGuest: true }},
+  { path: "/signup", component: SignUp,
+  meta: { requiresGuest: true } },
   { path: "/post", component: Post },
   { path: "/contact", component: Contact },
-  { path: "/settings", component: Settings },
-  { path: "/CreateArticle", component: CreateArticle},
+  { path: "/settings", component: Settings,
+  meta: { requiresAuth: true } },
+  { path: "/CreateArticle", component: CreateArticle,
+  meta: { requiresAuth: true }},
   { path: "/post/:id", component: Post },
-  { path: "/myarticles", component: Myarticles }
+  { path: "/myarticles", component: Myarticles,
+  meta: { requiresAuth: true } }
 
   
 ];
 
+
+
 const router = createRouter({
   history: createWebHistory(),
-  routes, // short for `routes: routes`
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+      return { top: 0 };    
+  }
+});
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token') !== null;
+  
+  if (to.matched.some(route => route.meta.requiresAuth)) {
+
+    if (isAuthenticated) {
+
+      next();
+    } else {
+
+      next('/login');
+    }
+  } else if (to.matched.some(route => route.meta.requiresGuest)) {
+
+    if (isAuthenticated) {
+
+      next('/');
+    } else {
+
+      next();
+    }
+  } else {
+
+    next();
+  }
 });
 
 export default router;
