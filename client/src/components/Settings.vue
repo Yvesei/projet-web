@@ -10,37 +10,37 @@
                 
 
                 <form @submit.prevent class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-1">
-                    <div>
-                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Full Name</label>
-                        <input v-model="username" type="text" placeholder="John" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
+                    <div class="mt-2">
+            <label class="block text-gray-700">Username</label>
+            <input v-model="username" type="username" name="" id="" placeholder="Enter Your New Username" minlength="6" class="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+          </div>
                     
-                    <div>
-                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
-                        <input v-model="email"  placeholder="johnsnow@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
+          <div class="mt-2">
+            <label class="block text-gray-700">Email</label>
+            <input v-model="email" type="email" name="" id="" placeholder="Enter Your New Email" minlength="6" class="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+          </div>
 
-                    <div>
-                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
-                        <input v-model="password" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
+          <div class="mt-2">
+            <label class="block text-gray-700">Password</label>
+            <input v-model="password" type="password" name="" id="" placeholder="Enter Your New Password" minlength="6" class="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+                  <p v-if="passwordMismatch" class="text-red-500 mt-2">Passwords do not match</p>
 
-                    <div>
-                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Confirm password</label>
-                        <input v-model="confirmPass" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
+          </div>
 
-                    <button @click="handleSubmit()"
-                        class="bg-blue-500 px-5 py-3 text-base mb-3 font-medium text-white hover:bg-blue-600 active:bg-blue-700 flex items-center justify-between w-full px-6 py-3 tracking-wide capitalize transition-colors duration-300 transform bg-blue-500 rounded-md ">
-                        <span>Sign Up </span>
+          <div class="mt-2">
+            <label class="block text-gray-700">Confirm Password</label>
+            <input v-model="confirmPass" type="password" name="" id="" placeholder="Enter Your New Password" minlength="6" class="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none" required>
+                  <p v-if="passwordMismatch" class="text-red-500 mt-2">Passwords do not match</p>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </form>
+          </div>
+
+          <button @click="handleSubmit()" type="submit" class="w-full block bg-blue-700 hover:bg-blue-800 focus:bg-blue-400 text-white font-semibold rounded-lg
+                px-4 py-3 mt-6 mb-6">Update Account Infomation</button>
+        </form>
             </div>
         </div>
     </div>
@@ -56,13 +56,15 @@ export default {
         username : '',
         email : '',
         password : '',
-        confirmPass : ''
+        confirmPass : '',
+        passwordMismatch : ''
       }
     },
     methods: {
       async handleSubmit(){
+        
         if(this.password !== this.confirmPass){
-          alert('wrong pass')
+            this.passwordMismatch = true;
           return;
         }
         const response = await axios.patch('users/', 
