@@ -2,9 +2,6 @@
     <div class="min-h-screen flex justify-center items-center py-20">
     <div class="container mx-auto p-12 rounded-xl">
     <h1 class="text-4xl font-bold text-center mb-4">About Us</h1>
-    <h5 class=" flex items-center justify-center text-xl">Home<svg class="h-4 pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
-        About
-    </h5>
     <!-- Box-1 -->
     <div class=" px-2 py-8">
         <div class="max-w-[45rem] flex flex-col justify-center m-auto">
