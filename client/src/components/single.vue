@@ -8,7 +8,7 @@
                 <div class="yellow-flag mr-2" v-for="categorie in article.categories" v-bind:key="categorie.id">
 						      {{categorie.nom}}	
         				</div>
-                <h1 class="uppercase text-xl font-gray-700 font-bold">{{article.titre}}</h1>
+                <h1 class="uppercase text-base  font-bold">{{article.titre}}</h1>
                 <button v-if="isMyArticle" @click="deleteArticle(article.id)" class="bg-red-500 text-white px-4 py-2 mt-4">delete</button>
 
               </div>
