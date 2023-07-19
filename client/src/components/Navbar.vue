@@ -6,36 +6,10 @@
       <img src="../../public/logo.png" class="h-[4rem] mr-3" alt="">
   </a>
   <div class="flex md:order-2">
-      <button v-if="!name" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><router-link  to="/login">Login</router-link>
-      </button>
-
-
-       <button @click="toggleDropdown" v-if="name" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
-                <img class="object-cover w-8 h-8 rounded-full" :src="getUserImageSrc()" alt="">
-            
-                <div class="text-left rtl:text-right">
-                    <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">{{name}}</h1>
-    
-                    <p class="text-xs text-gray-500 dark:text-gray-400">author</p>
-                </div>
-            </button>
+    <button v-if="!name" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><router-link  to="/login">Login</router-link>
+    </button>
 <!-- Dropdown menu -->
-<div v-if="showDropdown" id="dropdown" style="top:4rem;right:3.5rem;" class="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-      <li>
-        <router-link to="/CreateArticle" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New Article</router-link>
-      </li>
-      <li>
-        <router-link class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" to="/myarticles">My Articles</router-link>
-      </li>
-      <li>
-        <router-link class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" to="/settings">Settings</router-link>
-      </li>
-      <li>
-        <a @click="signOut" href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-      </li>
-    </ul>
-</div>
+<Profile />
   <!-- Nav Dropwdown Menu -->
 
   <button @click="toggleDropdownNav()" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
@@ -66,8 +40,12 @@
 </template>
 
 <script>
+import Profile from './Profile.vue';
 export default {
     name:'Navbar',
+    components:{
+    Profile,
+  },
     data() {
     return {
       name: '', // Initialize the userName data property
