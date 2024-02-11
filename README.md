@@ -1,6 +1,8 @@
 
 # Project Name
-Blog - A web application for creating and managing blog posts.
+Blog - A vulnerable web application for creating and managing blog posts.
+
+Try your best to exploit it. moving from one account to the other. adn finally the Admin Account.
 
 ## Project Structure
 The project is structured into two main folders:
